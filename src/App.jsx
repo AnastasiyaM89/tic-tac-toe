@@ -1,4 +1,4 @@
-import React, { useState, StrictMode } from 'react';
+import React, { useState } from 'react';
 import { GameLayout } from './GameLayout.jsx';
 import PropTypes from 'prop-types';
 import './App.module.css';
@@ -61,16 +61,24 @@ export const App = () => {
 		setField(Array(9).fill(null));
 	};
 
+	let status;
+	if (isDraw) {
+		status = 'Ничья';
+	} else if (isGameEnded) {
+		status = `Победа: ${currentPlayer}`;
+	} else {
+		status = `Ходит: ${currentPlayer}`;
+	}
+
 	return (
-		<StrictMode>
-			<GameLayout
-				currentPlayer={currentPlayer}
-				isGameEnded={isGameEnded}
-				isDraw={isDraw}
-				field={field}
-				onCellClick={handleCellClick}
-				onRestart={handleRestart}
-			/>
-		</StrictMode>
+		<GameLayout
+			currentPlayer={currentPlayer}
+			isGameEnded={isGameEnded}
+			isDraw={isDraw}
+			field={field}
+			onCellClick={handleCellClick}
+			onRestart={handleRestart}
+			status={status}
+		/>
 	);
 };

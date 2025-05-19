@@ -3,21 +3,10 @@ import { Information } from './Information.jsx';
 import { Field } from './Field.jsx';
 import styles from './App.module.css';
 
-export const GameLayout = ({
-	currentPlayer,
-	isGameEnded,
-	isDraw,
-	field,
-	onCellClick,
-	onRestart,
-}) => {
+export const GameLayout = ({ field, onCellClick, onRestart, status }) => {
 	return (
 		<div className={styles.gameContainer}>
-			<Information
-				currentPlayer={currentPlayer}
-				isGameEnded={isGameEnded}
-				isDraw={isDraw}
-			/>
+			<Information status={status} />
 			<Field field={field} onCellClick={onCellClick} />
 			<button className={styles.restartButton} onClick={onRestart}>
 				Начать заново
